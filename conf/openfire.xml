@@ -45,7 +45,7 @@
   <database>
     <defaultProvider>
       <driver>org.postgresql.Driver</driver>
-      <serverURL>jdbc:postgresql://postgre:5432/mydb</serverURL>
+      <serverURL>jdbc:postgresql://postgres:5432/postgres</serverURL>
       <username>user</username>
       <password>secret</password>
       <testSQL>select 1</testSQL>

@@ -1,8 +1,9 @@
-version: "2.2"
+version: "3"
 
 services:
   openfire:
-    image: openfire:v.0.0.1
+    image: gidiyan/ci-openfire:v.0.0.3
+    restart: unless-stopped
     ports:
       - "9090:9090"
       - "5222:5222"
@@ -13,27 +14,14 @@ services:
       - "7070:7070"
       - "5229:5229"
       - "5275:5275"
-    volumes:
-      - data1:/var/lib/openfire
-    links:
+    depends_on:
       - db:db
   db:
     container_name: postgres
-    image: postgres:11.14-alpine
-    command: -c ssl=off  
+    image: postgres:11.15-alpine.0.0.1
     ports:
       - "5432:5432"
-    volumes:
-      - data2:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=mydb
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=secret
-
-volumes:
-  data1:
-    external: true
-    name: openfire_data
-  data2:
-    external: true
-    name: data

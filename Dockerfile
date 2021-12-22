@@ -1,7 +1,7 @@
 FROM openjdk:8u232-jre-slim
 MAINTAINER gizmotronic@gmail.com
 
-ENV OPENFIRE_VERSION=4.4.4 \
+ENV OPENFIRE_VERSION=4.6.6 \
     OPENFIRE_USER=openfire \
     OPENFIRE_DATA_DIR=/var/lib/openfire \
     OPENFIRE_LOG_DIR=/var/log/openfire
@@ -16,7 +16,7 @@ RUN apt-get update \
  && rm -rf openfire_${OPENFIRE_VERSION}_all.deb \
  && rm -rf /var/lib/apt/lists/*
 
-COPY conf /data/etc/
+COPY conf/openfire.xml /usr/share/openfire/conf/
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 

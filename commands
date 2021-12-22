@@ -1,17 +1,17 @@
-sudo docker run -d \
+docker run -d \
     --name postgres \
+	-e POSTGRES_DB=mydb \
     -e POSTGRES_USER=user \
     -e POSTGRES_PASSWORD=secret \
-    -e POSTGRES_DB=mydb \
     -v data:/var/lib/postgresql/data \
     --net postgre_openfire \
-    postgres:11.14-alpine 
+    postgres:11.15-alpine.0.0.1
 
-sudo docker run -d \
+docker run -d \
     -p 9090:9090 -p 5222:5222 -p 5269:5269 -p 5223:5223 \
     -p 7443:7443 -p 7777:7777 -p 7070:7070 -p 5229:5229 \
     -p 5275:5275 --link postgres:db \
     -v openfire_data:/var/lib/openfire \
     --name openfire  \
     --net postgre_openfire \
-    openfire:v.0.0.1
+    gidiyan/ci-openfire:v.0.0.3

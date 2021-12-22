@@ -1,0 +1,4 @@
+FROM postgres:11.5-alpine
+COPY dump.sql /docker-entrypoint-initdb.d/init.sql
+RUN chmod 755 /docker-entrypoint-initdb.d/init.sql
+ENV PGDATA=/data
